@@ -1152,8 +1152,6 @@ fn handle_generate_attest(_task_type: &str, payload: &Value) -> Result<Value> {
     let tee_us = tee_start.elapsed().as_micros();
     let profile_start = Instant::now();
     let profile = tee_ops::identity_profile()?;
-    }
-
     let profile_us = profile_start.elapsed().as_micros();
     let encode_start = Instant::now();
     log_cert_chain("attest", &session.cert_chain);
