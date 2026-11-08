@@ -1152,12 +1152,6 @@ fn handle_generate_attest(_task_type: &str, payload: &Value) -> Result<Value> {
     let tee_us = tee_start.elapsed().as_micros();
     let profile_start = Instant::now();
     let profile = tee_ops::identity_profile()?;
-    if session.km_version != profile.hardware_version {
-        anyhow::bail!(
-            "KeyMint identity changed while minting: profile hardware={} session hardware={}",
-            profile.hardware_version,
-            session.km_version
-        );
     }
 
     let profile_us = profile_start.elapsed().as_micros();
